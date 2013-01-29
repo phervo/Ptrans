@@ -8,7 +8,7 @@ ratings=read.table("ratings",sep ="",na.strings = "NA",col.names=c("Uid","Mid","
 users=read.table("users",sep =";",na.strings = "NA")
 
 #objets utils
-
+blablabla
 #chargement des fonctions
 
 source("test2.R")
