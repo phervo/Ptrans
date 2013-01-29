@@ -9,7 +9,6 @@ users=read.table("users",sep =";",na.strings = "NA")
 
 #objets utils
 #chargement des fonctions
-djqsilfhdslfqsdfghj
 
 source("test2.R")
 source("LienItemRating.R")
