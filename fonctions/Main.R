@@ -2,10 +2,13 @@
 
 #chargement des fichiers
 setwd("C:/Users/Py/Documents/Polytech/4emeAnnee/PTRANS/MovieLens")
-items=read.table("items",sep =";",na.strings = "NA")
 genre=read.table("genre",sep ="|",na.strings = "NA")
-ratings=read.table("ratings",sep ="",na.strings = "NA",col.names=c("Uid","Mid","Rtg","Ts"))
-users=read.table("users",sep =";",na.strings = "NA")
+# items=read.table("items",sep =";",na.strings = "NA")
+#users=read.table("users",sep =";",na.strings = "NA")
+#ratings=read.table("ratings",sep ="",na.strings = "NA",col.names=c("Uid","Mid","Rtg","Ts"))
+ratings=read.table("ratingsMini",sep ="",na.strings = "NA",col.names=c("Uid","Mid","Rtg","Ts"))
+items=read.table("itemsMini",sep =";",na.strings = "NA")
+users=read.table("usersMini",sep =";",na.strings = "NA")
 
 #objets utils
 #chargement des fonctions
