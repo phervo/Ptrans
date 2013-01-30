@@ -28,7 +28,7 @@ GetMatUserByBooks=function()
     matriceNote[ratingsOrder[i,1],ratingsOrder[i,2]]=ratingsOrder[i,3]
   }
   
-  matriceNote
+  as.matrix(matriceNote)
 }
 
 
@@ -43,17 +43,17 @@ ordonnerRatings=function(){
   return(ratingso)
 }
 
-userToItem<-function(Uid)
+GetMatUserToBook<-function(Uid)
 {
-  
-  #Fonction qui retourne les ouvrages empruntes par un utilisateur
-  #Par Benj
-  #date de derniere Maj : 30/01/12
-  #entrees : UserID
-  #sortie : Vecteur de booleen qui indique si l'utilisateur passe en parametre a emprunte ou non l'ouvrage
-  #exemple d utilisation : userToItem
-  # Exemple d'utilisation: mat = userToItem(6)
-  #pour voir un resultat mat[86,1]
+  # Fonction qui retourne une matrice
+  # Lignes: users
+  # Colonnes: books
+  # Par Benji
+  # Date de derniere MaJ: 30/01/12
+  # Entree: UserID
+  # Sortie: Vecteur de booleen qui indique si l'utilisateur passe en parametre a emprunte ou non l'ouvrage
+  # Exemple d'utilisation: mat = GetMatUserToBook(6)
+  # Pour voir un resultat, taper: mat[86,1]
   
   matriceNote = GetMatUserByBooks()
   nBooks = ncol(matriceNote)
@@ -71,29 +71,33 @@ userToItem<-function(Uid)
     }
   }
   
-  matriceBorrow
+  as.matrix(matriceBorrow)
 }
 
 nbBooksBorrowedByUser<-function(Uid)
 {
   # Fonction qui retourne le nombre de livres empruntes par l'utilisateur passe en parametre
-  #Par Benj
-  #date de derniere Maj : 30/01/12
-  #entrees : id de l utilisateur
-  #sortie : nombre de livres empruntes par l'utilisateur
-  #exemple d utilisation : userToItem
-  #Exemple d'utilisation: nbBooksBorrowedByUser(6) 
+  # Par Benji
+  # Date de derniere MaJ: 30/01/12
+  # Entree: UserID
+  # Sortie: nombre de livres empruntes par l'utilisateur dont l'ID a ete passe en parametre
+  # Exemple d'utilisation: nbBooksBorrowedByUser(6) 
   
-  mat = userToItem(Uid)
+  mat = GetMatUserToBook(Uid)
   nBorrow = sum(mat)
+  
   nBorrow
 }
 
-bookByGenre<-function()
+GetMatBookByGenre<-function()
 {
-  # Fait apparaitre une matrice binaire
-  # Lignes: ouvrages
-  # Colonnes: themes
+  # Fonction qui retourne une matrice
+  # Lignes: books
+  # Colonnes: genres
+  # Par Benji
+  # Date de derniere MaJ: 30/01/12
+  # Entree: 
+  # Sortie: matrice binaire books x genres
   
   # Creation d'une matrice vide a remplir
   X = nrow(items)
@@ -113,17 +117,21 @@ bookByGenre<-function()
   #colnames(theme) = genre[,1] #si on souhaite les noms
   
   # Apparition de la matrice
-  theme
+  as.matrix(theme)
 }
 
-userByGenre<-function()
+GetMatUserByGenre<-function()
 { 
-  # Fait apparaitre une matrice binaire
-  # Lignes: utilisateurs
-  # Colonnes: themes
+  # Fonction qui retourne une matrice
+  # Lignes: users
+  # Colonnes: genres
+  # Par Benji
+  # Date de derniere MaJ: 30/01/12
+  # Entree: 
+  # Sortie: matrice binaire users x genres
   
-  matBookByGenre = as.matrix(bookByGenre())
-  matUserByBook = as.matrix(userByBook())
+  matBookByGenre = GetMatBookByGenre()
+  matUserByBook = GetMatUserByBook()
   
   # %*% operateur de multiplication de matrices
   matUserByGenre = matUserByBook %*% matBookByGenre
