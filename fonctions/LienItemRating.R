@@ -6,7 +6,7 @@ GetMatUserByBooks=function()
   #entrees : id du genre
   #sortie : Matrice avec en ligne les utilisateur, en colonne les ouvrages et au centre les notes
   #exemple d utilisation : Mat=GetMatUserByBooks() 
-  # pour voir un resultat Mat[6,86]
+  #pour voir un resultat Mat[6,86]
   
   #on trie d'abord attention etape obligatoire 
   ratingsOrder=ordonnerRatings()
@@ -46,26 +46,21 @@ ordonnerRatings=function(){
 userToItem<-function(Uid)
 {
   
-  # Fonction qui prend en parametre un user et qui retourne les items empruntes
-  #Par Py
+  #Fonction qui retourne les ouvrages empruntes par un utilisateur
+  #Par Benj
   #date de derniere Maj : 30/01/12
-  #entrees : rien
-  #sortie : Matrice ratings triee sur deux champs : le premier est l userId le second le MovieId
-  #exemple d utilisation : ordonnerRatings()
-  # 0: non emprunte
-  # 1 : emprunte
-  #
-  # Exemple d'utilisation:
-  # mat = userToItem(6)
-  # mat[86,1]
+  #entrees : UserID
+  #sortie : Vecteur de booleen qui indique si l'utilisateur passe en parametre a emprunte ou non l'ouvrage
+  #exemple d utilisation : userToItem
+  # Exemple d'utilisation: mat = userToItem(6)
+  #pour voir un resultat mat[86,1]
   
-  matriceNote = lienItemRatings()
+  matriceNote = GetMatUserByBooks()
   nBooks = ncol(matriceNote)
   
   # Creation d'une matrice vide a remplir
   matriceBorrow = data.frame(matrix(0,nrow=nBooks,ncol=1))
   rownames(matriceBorrow)<-items[,1]
-  
   
   for( i in 1:nBooks)
   { 
@@ -81,12 +76,16 @@ userToItem<-function(Uid)
 
 nbBooksBorrowedByUser<-function(Uid)
 {
-  # Nombre de livres empruntes par l'utilisateur passe en parametre
+  # Fonction qui retourne le nombre de livres empruntes par l'utilisateur passe en parametre
+  #Par Benj
+  #date de derniere Maj : 30/01/12
+  #entrees : id de l utilisateur
+  #sortie : nombre de livres empruntes par l'utilisateur
+  #exemple d utilisation : userToItem
+  #Exemple d'utilisation: nbBooksBorrowedByUser(6) 
   
   mat = userToItem(Uid)
   nBorrow = sum(mat)
-  print("Nombre d'ouvrage empruntés: ")
-  
   nBorrow
 }
 
@@ -118,7 +117,7 @@ bookByGenre<-function()
 }
 
 userByGenre<-function()
-{
+{ 
   # Fait apparaitre une matrice binaire
   # Lignes: utilisateurs
   # Colonnes: themes

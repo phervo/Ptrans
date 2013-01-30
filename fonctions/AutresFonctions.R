@@ -1,15 +1,15 @@
-NbLivreEmprunterGenre=function(Gid)
+NbLivreEmpruntesGenre=function()
 {
-  #function qui retourne le nombre de livre empruntes du genre donne en parametre
+  #function qui retourne le nombre de livre de chaque genre ayant deja ete empruntes
   #Par Py
   #date de derniere Maj : 30/01/12
-  #entrees : id du genre
-  #sortie : nombre de livre du genre empruntes
-  #exemple d utilisation : NbLivreEmprunterGenre
+  #entrees : rien
+  #sortie : vecteur avec le nombre de livre du genre ayant deja ete empruntes
+  #exemple d utilisation : NbLivreEmprunterGenre()
   #
-  MatriceGenre=test()
+  MatriceGenre=bookByGenre()
   num=ncol(MatriceGenre)
-  matrice=matrix(0,ncol=1,nrow=num)
+  matrice=matrix(0,nrow=num,ncol=1)
   rownames(matrice)=colnames(MatriceGenre)
   for( i in 1:num )
   {
@@ -18,10 +18,12 @@ NbLivreEmprunterGenre=function(Gid)
   matrice
 }
 
-#ratio
+#nombreLivreGenre fonction a faire
+#ratio fonction a faire
 
 itemToUser<-function(Mid)
 {
+  #py
   # Fonction qui prend en parametre un id movie et qui retourne un vecteur avec les personnes ayant emprunte ce livre
   # exemple d utilisation
   # MAt=itemToUser(86)
@@ -48,6 +50,7 @@ itemToUser<-function(Mid)
 
 NbPersonnesAyantEmprunteOuvrage=function(Mid)
 {
+  #py
   #Fonction qui prend en parametre un id movie et qui retourne le nombre de personnes l'ayant deja emprunte
   Mat=itemToUser(Mid)
   somme=sum(Mat)
