@@ -1,6 +1,12 @@
 NbLivreEmprunterGenre=function(Gid)
 {
   #function qui retourne le nombre de livre empruntes du genre donne en parametre
+  #Par Py
+  #date de derniere Maj : 30/01/12
+  #entrees : id du genre
+  #sortie : nombre de livre du genre empruntes
+  #exemple d utilisation : NbLivreEmprunterGenre
+  #
   MatriceGenre=test()
   num=ncol(MatriceGenre)
   matrice=matrix(0,ncol=1,nrow=num)
@@ -12,6 +18,8 @@ NbLivreEmprunterGenre=function(Gid)
   matrice
 }
 
+#ratio
+
 itemToUser<-function(Mid)
 {
   # Fonction qui prend en parametre un id movie et qui retourne un vecteur avec les personnes ayant emprunte ce livre
@@ -19,12 +27,12 @@ itemToUser<-function(Mid)
   # MAt=itemToUser(86)
   # MAt[6,1]
   
-  matriceNote=lienItemRatingsMini()
+  matriceNote=lienItemRatings()
   
   # Creation d'une matrice vide a remplir
-  X = nrow(usersMini)
+  X = nrow(users)
   matriceBorrow=data.frame(matrix(0,nrow=X,ncol=1))
-  rownames(matriceBorrow)<-usersMini[,1]
+  rownames(matriceBorrow)<-users[,1]
   
   for( i in 1:X)
   {

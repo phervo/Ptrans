@@ -1,5 +1,13 @@
-userByBook=function()
+GetMatUserByBooks=function()
 {
+  #function qui retourne la matrice de notations des ouvrages par les utilisateurs
+  #Par Py
+  #date de derniere Maj : 30/01/12
+  #entrees : id du genre
+  #sortie : Matrice avec en ligne les utilisateur, en colonne les ouvrages et au centre les notes
+  #exemple d utilisation : Mat=GetMatUserByBooks() 
+  # pour voir un resultat Mat[6,86]
+  
   #on trie d'abord attention etape obligatoire 
   ratingsOrder=ordonnerRatings()
   
@@ -23,15 +31,27 @@ userByBook=function()
   matriceNote
 }
 
-ordonnerRatingsMini=function(){
-  #fonction qui ordonne le data frame rating 
+
+ordonnerRatings=function(){
+  #function qui retourne la matrice ratrings triee. Cette fonction sert pour la fonction GetMatUserByBooks
+  #Par Py
+  #date de derniere Maj : 30/01/12
+  #entrees : rien
+  #sortie : Matrice ratings triee sur deux champs : le premier est l userId le second le MovieId
+  #exemple d utilisation : ordonnerRatings()
   ratingso <- ratings[order(ratings$Uid,ratings$Mid), ]
   return(ratingso)
 }
 
 userToItem<-function(Uid)
 {
+  
   # Fonction qui prend en parametre un user et qui retourne les items empruntes
+  #Par Py
+  #date de derniere Maj : 30/01/12
+  #entrees : rien
+  #sortie : Matrice ratings triee sur deux champs : le premier est l userId le second le MovieId
+  #exemple d utilisation : ordonnerRatings()
   # 0: non emprunte
   # 1 : emprunte
   #
