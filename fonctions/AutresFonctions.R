@@ -15,11 +15,36 @@ NbLivreEmpruntesGenre=function()
   {
     matrice[i,1]=sum(MatriceGenre[,i])
   }
-  matrice
+  as.matrix(matrice)
 }
 
-#nombreLivreGenre fonction a faire
+#nombreLivreGenre fonction a faire => a modifier
+NbLivreEmpruntesGenreDonne=function(Gid)
+{
+  #function qui retourne le nombre de livre d'un genre particulier ayant deja ete empruntes
+  #Par Py
+  #date de derniere Maj : 31/01/12
+  #entrees : id du genre
+  #sortie : vecteur avec le nombre de livre du genre ayant deja ete empruntes
+  #exemple d utilisation : NbLivreGenreDonne(1)
+  #
+  Mat=NbLivreEmpruntesGenre()
+  Mat[Gid,1]
+}
+
+NbLivreGenre=function()
+{
+  matrice=matrix(0,nrow=num,ncol=1)
+  #on recupere les colonnes de items qui correspondent au types
+  for(i in 1:X)
+  {
+    
+  }
+}
+
 #ratio fonction a faire
+#fonctions pour lire un fichier excel
+
 
 itemToUser<-function(Mid)
 {
