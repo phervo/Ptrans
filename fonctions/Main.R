@@ -16,10 +16,6 @@ ratings=read.table("FichiersMini/ratingsMini",sep ="",na.strings = "NA",col.name
 source("fonctions/LienItemRating.R")
 source("fonctions/AutresFonctions.R")
 
-
-#test d appels de fonctions
-lienItemRating()
-ordonnerRating()
-
+#exemple de jointures de tables
 x=merge(ratings,users,by.x="V1",by.y="V1")
 z=merge(ratings,items,by.x="Mid",by.y="V1")

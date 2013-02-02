@@ -1,11 +1,11 @@
-GetMatUserByBooks=function()
+GetMatriceNotationsOuvrages=function()
 {
   #function qui retourne la matrice de notations des ouvrages par les utilisateurs
   #Par Py
-  #date de derniere Maj : 30/01/12
-  #entrees : id du genre
+  #date de derniere Maj : 02/02/13
+  #entrees : rien
   #sortie : Matrice avec en ligne les utilisateur, en colonne les ouvrages et au centre les notes
-  #exemple d utilisation : Mat=GetMatUserByBooks() 
+  #exemple d utilisation : Mat=GetMatriceNotationsOuvrages() 
   #pour voir un resultat Mat[6,86]
   
   #on trie d'abord attention etape obligatoire 
@@ -33,9 +33,9 @@ GetMatUserByBooks=function()
 
 
 ordonnerRatings=function(){
-  #function qui retourne la matrice ratrings triee. Cette fonction sert pour la fonction GetMatUserByBooks
+  #function qui retourne la matrice ratrings triee. Cette fonction sert pour la fonction GetMatriceNotationsOuvrages
   #Par Py
-  #date de derniere Maj : 30/01/12
+  #date de derniere Maj : 30/01/13
   #entrees : rien
   #sortie : Matrice ratings triee sur deux champs : le premier est l userId le second le MovieId
   #exemple d utilisation : ordonnerRatings()
@@ -45,11 +45,11 @@ ordonnerRatings=function(){
 
 GetMatUserToBook<-function(Uid)
 {
-  # Fonction qui retourne une matrice
+  # Fonction qui retourne la matrice des ustilsateur 
   # Lignes: users
   # Colonnes: books
   # Par Benji
-  # Date de derniere MaJ: 30/01/12
+  # Date de derniere MaJ: 30/01/13
   # Entree: UserID
   # Sortie: Vecteur de booleen qui indique si l'utilisateur passe en parametre a emprunte ou non l'ouvrage
   # Exemple d'utilisation: mat = GetMatUserToBook(6)
@@ -78,7 +78,7 @@ nbBooksBorrowedByUser<-function(Uid)
 {
   # Fonction qui retourne le nombre de livres empruntes par l'utilisateur passe en parametre
   # Par Benji
-  # Date de derniere MaJ: 30/01/12
+  # Date de derniere MaJ: 30/01/3
   # Entree: UserID
   # Sortie: nombre de livres empruntes par l'utilisateur dont l'ID a ete passe en parametre
   # Exemple d'utilisation: nbBooksBorrowedByUser(6) 
@@ -95,7 +95,7 @@ GetMatBookByGenre<-function()
   # Lignes: books
   # Colonnes: genres
   # Par Benji
-  # Date de derniere MaJ: 30/01/12
+  # Date de derniere MaJ: 30/01/3
   # Entree: 
   # Sortie: matrice binaire books x genres
   
@@ -126,7 +126,7 @@ GetMatUserByGenre<-function()
   # Lignes: users
   # Colonnes: genres
   # Par Benji
-  # Date de derniere MaJ: 30/01/12
+  # Date de derniere MaJ: 30/01/13
   # Entree: 
   # Sortie: matrice binaire users x genres
   
