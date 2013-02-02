@@ -43,19 +43,19 @@ ordonnerRatings=function(){
   return(ratingso)
 }
 
-GetMatUserToBook<-function(Uid)
+GetMatriceColonneEmpruntOuvrage<-function(Uid)
 {
   # Fonction qui retourne une matrice colonne
   # Lignes: books
   # Colonne: user passe en parametre
   # Par Benji
-  # Date de derniere MaJ: 30/01/13
+  # Date de derniere MaJ: 02/02/2013
   # Entree: UserID
   # Sortie: Vecteur de booleen qui indique si l'utilisateur passe en parametre a emprunte ou non l'ouvrage
-  # Exemple d'utilisation: mat = GetMatUserToBook(6)
+  # Exemple d'utilisation: mat = GetMatriceColonneEmpruntOuvrage(6)
   # Pour voir un resultat, taper: mat[86,1]
   
-  matriceNote = GetMatUserByBooks()
+  matriceNote = GetMatriceNotationsOuvrages()
   nBooks = ncol(matriceNote)
   
   # Creation d'une matrice vide a remplir
@@ -74,22 +74,22 @@ GetMatUserToBook<-function(Uid)
   as.matrix(matriceBorrow)
 }
 
-nbBooksBorrowedByUser<-function(Uid)
+nbOuvragesEmpruntesParUtilisateurDonne<-function(Uid)
 {
   # Fonction qui retourne le nombre de livres empruntes par l'utilisateur passe en parametre
   # Par Benji
-  # Date de derniere MaJ: 30/01/3
+  # Date de derniere MaJ: 02/02/2013
   # Entree: UserID
   # Sortie: nombre de livres empruntes par l'utilisateur dont l'ID a ete passe en parametre
-  # Exemple d'utilisation: nbBooksBorrowedByUser(6) 
+  # Exemple d'utilisation: nbOuvragesEmpruntesParUtilisateurDonne(6) 
   
-  mat = GetMatUserToBook(Uid)
+  mat = GetMatriceColonneEmpruntOuvrage(Uid)
   nBorrow = sum(mat)
   
   nBorrow
 }
 
-GetMatBookByGenre<-function()
+GetMatriceThemesDesOuvrages<-function()
 {
   # Fonction qui retourne une matrice
   # Lignes: books
@@ -120,7 +120,7 @@ GetMatBookByGenre<-function()
   as.matrix(theme)
 }
 
-GetMatUserByGenre<-function()
+GetMatriceEmpruntsDesUtilisateursParTheme<-function()
 { 
   # Fonction qui retourne une matrice
   # Lignes: users
@@ -130,8 +130,8 @@ GetMatUserByGenre<-function()
   # Entree: 
   # Sortie: matrice binaire users x genres
   
-  matBookByGenre = GetMatBookByGenre()
-  matUserByBook = GetMatUserByBook()
+  matBookByGenre = GetMatriceThemesDesOuvrages()
+  matUserByBook = GetMatriceNotationsOuvrages()
   
   # %*% operateur de multiplication de matrices
   matUserByGenre = matUserByBook %*% matBookByGenre
