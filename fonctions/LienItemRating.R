@@ -95,7 +95,7 @@ GetMatriceThemesDesOuvrages<-function()
   # Lignes: books
   # Colonnes: genres
   # Par Benji
-  # Date de derniere MaJ: 30/01/3
+  # Date de derniere MaJ: 02/02/2013
   # Entree: 
   # Sortie: matrice binaire books x genres
   
@@ -126,7 +126,7 @@ GetMatriceEmpruntsDesUtilisateursParTheme<-function()
   # Lignes: users
   # Colonnes: genres
   # Par Benji
-  # Date de derniere MaJ: 30/01/13
+  # Date de derniere MaJ: 02/02/2013
   # Entree: 
   # Sortie: matrice binaire users x genres
   
