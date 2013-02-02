@@ -120,7 +120,7 @@ GetMatriceThemesDesOuvrages<-function()
   as.matrix(theme)
 }
 
-GetMatriceEmpruntsDesUtilisateursParTheme<-function()
+GetMatriceEmpruntsDesUtilisateursParTheme<-function() 
 { 
   # Fonction qui retourne une matrice
   # Lignes: users
