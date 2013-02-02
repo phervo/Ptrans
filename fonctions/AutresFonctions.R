@@ -1,29 +1,28 @@
-NbLivreEmpruntesGenre=function()
+NbLivreEmpruntesParGenre=function()
 {
-  #function qui retourne le nombre de livre de chaque genre ayant deja ete empruntes
+  #fonction qui retourne le nombre de livre de chaque genre ayant deja ete empruntes
   #Par Py
-  #date de derniere Maj : 30/01/12
+  #date de derniere Maj : 30/01/13
   #entrees : rien
   #sortie : vecteur avec le nombre de livre du genre ayant deja ete empruntes
-  #exemple d utilisation : NbLivreEmprunterGenre()
+  #exemple d utilisation : NbLivreEmprunterParGenre()
   #
-  MatriceGenre=bookByGenre()
+  MatriceGenre=GetMatUserToBook()
   num=ncol(MatriceGenre)
-  matrice=matrix(0,nrow=num,ncol=1)
-  rownames(matrice)=colnames(MatriceGenre)
+  matrice=matrix(0,nrow=1,ncol=num)
+  colnames(matrice)=colnames(MatriceGenre)
   for( i in 1:num )
   {
-    matrice[i,1]=sum(MatriceGenre[,i])
+    matrice[1,i]=sum(MatriceGenre[,i])
   }
   as.matrix(matrice)
 }
 
-#nombreLivreGenre fonction a faire => a modifier
-NbLivreEmpruntesGenreDonne=function(Gid)
+NbLivreEmpruntesPourGenreDonne=function(Gid)
 {
-  #function qui retourne le nombre de livre d'un genre particulier ayant deja ete empruntes
+  #fonction qui retourne le nombre de livre d'un genre particulier ayant deja ete empruntes
   #Par Py
-  #date de derniere Maj : 31/01/12
+  #date de derniere Maj : 31/01/13
   #entrees : id du genre
   #sortie : vecteur avec le nombre de livre du genre ayant deja ete empruntes
   #exemple d utilisation : NbLivreGenreDonne(1)
@@ -32,43 +31,63 @@ NbLivreEmpruntesGenreDonne=function(Gid)
   Mat[Gid,1]
 }
 
-NbLivreParGenre=function()
+NbLivreDansBaseParGenre=function()
 {
-  num=ncol(genre)
+  #fonction qui retourne le nombre de livres de chaque genre renseignes dans la base. Ici on ne tient pas compte
+  #du fait qu ils aient ete empruntes ou non.
+  #REMARQUE IMPORTANTE : ici on se preocupe des genres simples, c est a dire que si un livre a plusieurs genres,
+  #il sera comptabilise dans chacun des genres auquel il appartient,on ne cre pas de genres specifiques pour les
+  #groupement.
+  #
+  #Par Py
+  #date de derniere Maj : 02/02/13
+  #entrees : rien
+  #sortie : vecteur avec le nombre de livre enregistre dans chaque genre
+  #exemple d utilisation : NbLivreDansBaseParGenre()
+  num=nrow(genre)
   matrice=matrix(0,nrow=1,ncol=num)
+  colnames(matrice)=rownames(genre)
   #on recupere les colonnes de items qui correspondent au types
-  for(i in 1:X)
+  for(i in 1:num)
   {
     matrice[1,i]=sum(items[,4+i]) #on se place sur la bonne colonne en connaissance de la structure du fichier
   }
   matrice
 }
 
-#ratio fonction a faire
+
 RatioEmpruntsParGenre=function()
 {
-  num=ncol(genre)
+  #fonction qui retourne le pourcentage de livres empruntes pour chaque genre. Cela permet de savoir quels genres
+  # de livres sont les plus rentables a acquerir.
+  #Par Py
+  #date de derniere Maj : 02/02/13
+  #entrees : rien
+  #sortie : vecteur avec un pourcentage qui correspond pour chaque genre au nombre de livre emprunte sur le nombre
+  #de livre existant
+  #exemple d utilisation : NbLivreDansBaseParGenre()
+  num=nrow(genre)
   matrice=matrix(0,nrow=1,ncol=num)
   matriceEmpruntGenre=NbLivreEmpruntesGenre()
-  nbLivreParGenre=NbLivreParGenre()
-  for(i in 1:X)
+  nbLivreParGenre=NbLivreBaseParGenre()
+  for(i in 1:num)
   {
-    matrice[1,i]=(matriceEmpruntGenre/nbLivreParGenre)*100
+    matrice[1,i]=(matriceEmpruntGenre[,i]/nbLivreParGenre[,i])*100
   }
   matrice
 }
 
-#fonctions pour lire un fichier excel
-
-itemToUser<-function(Mid)
+PersonnesAyantEmprunteLivre<-function(Mid)
 {
-  #py
-  # Fonction qui prend en parametre un id movie et qui retourne un vecteur avec les personnes ayant emprunte ce livre
-  # exemple d utilisation
-  # MAt=itemToUser(86)
-  # MAt[6,1]
+  #fonction qui retourne un vecteur avec les personnes ayant empruntee  un livre precis 
+  #Par Py
+  #date de derniere Maj : 02/02/13
+  #entrees : un id de film
+  #sortie : un vecteur de booleen qui indique les personnes ayant emprunte le film passe en parametre
+  # exemple d utilisation :  MAt=PersonnesAyantEmprunteLivre(86)
+  # pour voir un resultat concret : MAt[6,1]
   
-  matriceNote=lienItemRatings()
+  matriceNote=GetMatriceNotationsOuvrages()
   
   # Creation d'une matrice vide a remplir
   X = nrow(users)
@@ -88,11 +107,15 @@ itemToUser<-function(Mid)
 }
 
 
-NbPersonnesAyantEmprunteOuvrage=function(Mid)
+NbPersonnesAyantEmprunteOuvrageDonne=function(Mid)
 {
-  #py
-  #Fonction qui prend en parametre un id movie et qui retourne le nombre de personnes l'ayant deja emprunte
-  Mat=itemToUser(Mid)
+  #fonction qui retourne le nombre de personnes ayant emprunte un ouvrage precis 
+  #Par Py
+  #date de derniere Maj : 02/02/13
+  #entrees : un id de film
+  #sortie : le nombre de personnes ayant emprunte cet ouvrage
+  # exemple d utilisation :  NbPersonnesAyantEmprunteOuvrageDonne(86)
+  Mat=PersonnesAyantEmprunteLivre(Mid)
   somme=sum(Mat)
   somme
 }
