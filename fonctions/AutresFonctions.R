@@ -32,19 +32,33 @@ NbLivreEmpruntesGenreDonne=function(Gid)
   Mat[Gid,1]
 }
 
-NbLivreGenre=function()
+NbLivreParGenre=function()
 {
-  matrice=matrix(0,nrow=num,ncol=1)
+  num=ncol(genre)
+  matrice=matrix(0,nrow=1,ncol=num)
   #on recupere les colonnes de items qui correspondent au types
   for(i in 1:X)
   {
-    
+    matrice[1,i]=sum(items[,4+i]) #on se place sur la bonne colonne en connaissance de la structure du fichier
   }
+  matrice
 }
 
 #ratio fonction a faire
-#fonctions pour lire un fichier excel
+RatioEmpruntsParGenre=function()
+{
+  num=ncol(genre)
+  matrice=matrix(0,nrow=1,ncol=num)
+  matriceEmpruntGenre=NbLivreEmpruntesGenre()
+  nbLivreParGenre=NbLivreParGenre()
+  for(i in 1:X)
+  {
+    matrice[1,i]=(matriceEmpruntGenre/nbLivreParGenre)*100
+  }
+  matrice
+}
 
+#fonctions pour lire un fichier excel
 
 itemToUser<-function(Mid)
 {
@@ -72,6 +86,7 @@ itemToUser<-function(Mid)
   
   matriceBorrow
 }
+
 
 NbPersonnesAyantEmprunteOuvrage=function(Mid)
 {
