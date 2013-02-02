@@ -45,9 +45,9 @@ ordonnerRatings=function(){
 
 GetMatUserToBook<-function(Uid)
 {
-  # Fonction qui retourne la matrice des ustilsateur 
-  # Lignes: users
-  # Colonnes: books
+  # Fonction qui retourne une matrice colonne
+  # Lignes: books
+  # Colonne: user passe en parametre
   # Par Benji
   # Date de derniere MaJ: 30/01/13
   # Entree: UserID
