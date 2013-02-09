@@ -1,5 +1,5 @@
 NbLivreEmpruntesParGenre()
-NbLivreEmpruntesPourGenreDonne()
+NbLivreEmpruntesPourGenreDonne(Gid)
 NbLivreDansBaseParGenre()
 RatioEmpruntsParGenre()
 PersonnesAyantEmprunteLivre(Mid)
