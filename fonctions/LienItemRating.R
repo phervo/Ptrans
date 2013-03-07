@@ -133,23 +133,24 @@ GetMatriceEmpruntsDesUtilisateursParTheme<-function()
   matBookByGenre = GetMatriceThemesDesOuvrages()
   matUserByBook = GetMatriceNotationsOuvrages()
   
-  # %*% operateur de multiplication de matrices
-  matUserByGenre = matUserByBook %*% matBookByGenre
-  
-  # "Binarisation" car jusque la, on avait les notes dans la matrice
-  nUsers = nrow(matUserByGenre)
-  nGenres = ncol(matUserByGenre)
+  # "Binarisation"de la matrice matUserByBook car jusque la, on avait les notes dans la matrice
+  nUsers = nrow(matUserByBook)
+  nBooks = ncol(matUserByBook)
   
   for( i in 1:nUsers )
   {
-    for( j in 1:nGenres )
+    for( j in 1:nBooks )
     {
-      if( matUserByGenre[i,j] > 0 )
+      if( matUserByBook[i,j] > 0 )
       {
-        matUserByGenre[i,j] = 1
+        matUserByBook[i,j] = 1
       }
     }
   }
   
+  # %*% operateur de multiplication de matrices
+  matUserByGenre = matUserByBook %*% matBookByGenre
+  
+    
   matUserByGenre
 }
