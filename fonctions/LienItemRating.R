@@ -126,7 +126,7 @@ GetMatriceEmpruntsDesUtilisateursParTheme<-function()
   # Lignes: users
   # Colonnes: genres
   # Par Benji
-  # Date de derniere MaJ: 02/02/2013
+  # Date de derniere MaJ: 07/03/2013
   # Entree: 
   # Sortie: matrice binaire users x genres
   
@@ -154,4 +154,49 @@ GetMatriceEmpruntsDesUtilisateursParTheme<-function()
     
   matUserByGenre
 }
-aaa
+
+GetMatriceNotationsOuvragesV2=function()
+{
+  # Fonction qui retourne une matrice binaire correspondant aux notes: 1 pour une note qui valait plus que 2
+  #                                                                    0 sinon
+  # Lignes: users
+  # Colonnes: books
+  # Par Benji
+  # Date de derniere MaJ: 14/03/2013
+  # Entree: 
+  # Sortie: matrice binaire users x books
+  # Exemple d'utilisation : mat = GetMatriceNotationsOuvragesV2() 
+  # Pour voir un resultat : mat[6,86]
+  # Utilite : servira pour avoir les sous-groupes d'utilisateurs d'une autre maniere
+  
+  # On recupere la matrice users x books de base issue des notations
+  matUsersByBooks = GetMatriceNotationsOuvrages()
+  
+  # Changement des valeurs
+  # Idee: 1 si note > 2 ( = vu et bien note )
+  #       0 sinon ( = pas vu ou vu et mal note )
+  nUsers = nrow(matUsersByBooks)
+  nBooks = ncol(matUsersByBooks)
+  
+  for( i in 1:nUsers )
+  {
+    for( j in 1:nBooks )
+    {
+      if( matUsersByBooks[i,j] > 2 )
+      {
+        matUsersByBooks[i,j] = 1
+      }
+      else
+      {
+        # Ce second "if" permet de ne re-ecrire que les cases qui en ont besoin
+        # afin de diminuer le nombre d'ecritures et ainsi la complexite
+        if( matUsersByBooks[i,j] > 0 )
+        {
+          matUsersByBooks[i,j] = 0
+        }
+      }
+    }
+  }
+  
+  as.matrix(matUsersByBooks)
+}
