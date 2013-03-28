@@ -8,6 +8,7 @@ items=read.table("FichiersMini/itemsMini",sep =";",na.strings = "NA")
 users=read.table("FichiersMini/usersMini",sep =";",na.strings = "NA")
 #ratings=read.table("FichierDonnees/ratings",sep ="",na.strings = "NA",col.names=c("Uid","Mid","Rtg","Ts"))
 ratings=read.table("FichiersMini/ratingsMini",sep ="",na.strings = "NA",col.names=c("Uid","Mid","Rtg","Ts"))
+jobs=read.table("FichierDonnees/jobs",sep ="",na.strings = "NA")
 
 #objets utils
 

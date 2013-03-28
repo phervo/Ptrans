@@ -119,3 +119,74 @@ NbPersonnesAyantEmprunteOuvrageDonne=function(Mid)
   somme=sum(Mat)
   somme
 }
+
+ObtenirMatriceCategorieSocioProfFoisUtilisateur=function()
+{
+  
+  #function qui retourne la matrice de notations des ouvrages par les utilisateurs
+  #Par Py
+  #date de derniere Maj : 14/03/13
+  #entrees : rien
+  #sortie : 
+  #exemple d utilisation : ObtenirMatriceCategorieSocioProfFoisUtilisateur()
+  
+  # Creation d'une matrice vide a remplir
+  X = nrow(jobs)
+  Y = nrow(users)#attention a bien utiliser users car on fait pour chaque utilisateur
+  matriceNote = data.frame(matrix(0,nrow=X,ncol=Y)) #0 represente le fait que le film soit non emprunte
+  
+  # Mise en place des noms des lignes et colonnes
+  rownames(matriceNote) = jobs[,1]
+  colnames(matriceNote) = users[,1]
+  for( i in 1:X )
+  {
+    for( j in 1:Y )
+    { 
+      if(jobs[i,1]==users[j,4]){
+        matriceNote[i,j]=1
+      }
+    }
+  }
+  matriceNote
+}
+
+#
+  #for( j in 1:Y )
+  #{
+  #  matriceNote[]
+ # }
+#}
+
+
+AttraitsCategorieSocioProfPourGenre=function()
+{
+  #fonction qui retourne la matrice avec en ligne les groupes socico professionnels et en colonne les genre 
+  #Par Py
+  #date de derniere Maj : 14/03/13
+  #entrees : rien
+  #sortie : les notes mises par les utilisateur sur un genre donne
+  # exemple d utilisation :  AttraitsCategorieSocioProfPourGenre()
+  matBookByGenre = GetMatriceThemesDesOuvrages()
+  matUserByBook = GetMatriceNotationsOuvrages()
+  
+  # "Binarisation"de la matrice matUserByBook car jusque la, on avait les notes dans la matrice
+  nUsers = nrow(matUserByBook)
+  nBooks = ncol(matUserByBook)
+  
+  for( i in 1:nUsers )
+  {
+    for( j in 1:nBooks )
+    {
+      if( matUserByBook[i,j] > 0 )
+      {
+        matUserByBook[i,j] = 1
+      }
+    }
+  }
+  
+  # %*% operateur de multiplication de matrices
+  matUserByGenre = matUserByBook %*% matBookByGenre
+  
+  
+  matUserByGenre
+}
