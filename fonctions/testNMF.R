@@ -8,5 +8,5 @@ n = 20
 counts= c(5, 3, 2)
 p = sum(counts)
 x = syntheticNMF(n, counts)
-
+blabla
 dim(x)
