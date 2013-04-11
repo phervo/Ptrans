@@ -159,26 +159,15 @@ AttraitsCategorieSocioProfPourGenre=function()
   #entrees : rien
   #sortie : les notes mises par les utilisateur sur un genre donne
   # exemple d utilisation :  AttraitsCategorieSocioProfPourGenre()
-  matBookByGenre = GetMatriceThemesDesOuvrages()
-  matUserByBook = GetMatriceNotationsOuvrages()
+  matUtilFoisMetier=ObtenirMatriceCategorieSocioProfFoisUtilisateur()
+  matThemeFoisUtil=t(GetMatriceEmpruntsDesUtilisateursParTheme())
+  nbligne=nrow(matThemeFoisUtil)
+  nbcolonne=ncol(matUtilFoisMetier)
+  matRetour=matrix(0,nrow=nbligne,ncol=nbcolonne)
   
-  # "Binarisation"de la matrice matUserByBook car jusque la, on avait les notes dans la matrice
-  nUsers = nrow(matUserByBook)
-  nBooks = ncol(matUserByBook)
-  
-  for( i in 1:nUsers )
-  {
-    for( j in 1:nBooks )
-    {
-      if( matUserByBook[i,j] > 0 )
-      {
-        matUserByBook[i,j] = 1
-      }
-    }
-  }
   
   # %*% operateur de multiplication de matrices
-  matUserByGenre = matUserByBook %*% matBookByGenre
+  matRetour = matThemeFoisUtil%*% matUtilFoisMetier
   
-  matUserByGenre
+  matRetour
 }
