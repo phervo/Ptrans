@@ -131,31 +131,24 @@ ObtenirMatriceCategorieSocioProfFoisUtilisateur=function()
   #exemple d utilisation : ObtenirMatriceCategorieSocioProfFoisUtilisateur()
   
   # Creation d'une matrice vide a remplir
-  X = nrow(jobs)
-  Y = nrow(users)#attention a bien utiliser users car on fait pour chaque utilisateur
-  matriceNote = data.frame(matrix(0,nrow=X,ncol=Y)) #0 represente le fait que le film soit non emprunte
+  X = nrow(users)#attention a bien utiliser users car on fait pour chaque utilisateur
+  Y = nrow(jobs)
+  matrice = matrix(0,nrow=X,ncol=Y) #0 represente le fait que le film soit non emprunte
   
   # Mise en place des noms des lignes et colonnes
-  rownames(matriceNote) = jobs[,1]
-  colnames(matriceNote) = users[,1]
+  rownames(matrice) = users[,1]
+  colnames(matrice) = jobs[,1]
   for( i in 1:X )
   {
     for( j in 1:Y )
     { 
-      if(jobs[i,1]==users[j,4]){
-        matriceNote[i,j]=1
+      if(users[i,4]==jobs[j,1]){
+        matrice[i,j]=1
       }
     }
   }
-  matriceNote
+  matrice
 }
-
-#
-  #for( j in 1:Y )
-  #{
-  #  matriceNote[]
- # }
-#}
 
 
 AttraitsCategorieSocioProfPourGenre=function()
@@ -186,7 +179,6 @@ AttraitsCategorieSocioProfPourGenre=function()
   
   # %*% operateur de multiplication de matrices
   matUserByGenre = matUserByBook %*% matBookByGenre
-  
   
   matUserByGenre
 }
